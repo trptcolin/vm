@@ -1,6 +1,17 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+
+
+# see https://github.com/dotless-de/vagrant-vbguest/issues/64
+require 'vagrant-vbguest' unless defined? VagrantVbguest::Config
+class CloudUbuntuVagrant < VagrantVbguest::Installers::Ubuntu
+  def install(opts=nil, &block)
+    communicate.sudo("apt-get -y -q purge virtualbox-guest-dkms virtualbox-guest-utils virtualbox-guest-x11", opts, &block)
+    super
+  end
+end
+
 Vagrant.configure("2") do |config|
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
@@ -12,6 +23,8 @@ Vagrant.configure("2") do |config|
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
   config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/raring/current/raring-server-cloudimg-i386-vagrant-disk1.box"
+
+  config.vbguest.installer = CloudUbuntuVagrant
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
