@@ -1,7 +1,10 @@
-package "vim-nox"
-package "build-essential"
+include_recipe "git"
+include_recipe "mercurial"
 
-home_dir = "/home/vagrant"
+package "vim-nox"
+
+user = node[:vim][:user]
+home_dir = node[:vim][:home_dir]
 vim_dir = "#{home_dir}/.vim"
 
 git vim_dir do
@@ -10,7 +13,12 @@ git vim_dir do
   action :sync
 end
 
+bash "chown vimdir, because of CHEF-3940" do
+  code "chown #{user}:#{user} #{vim_dir}"
+end
+
 bash "update bundle" do
+  environment({"HOME" => home_dir})
   code <<-EOF
     cd #{vim_dir}
     ruby update_bundles
@@ -28,4 +36,6 @@ end
 
 link "#{home_dir}/.vimrc" do
   to "#{vim_dir}/.vimrc"
+  owner user
+  group user
 end

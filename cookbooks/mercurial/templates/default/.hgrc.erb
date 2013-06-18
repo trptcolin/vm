@@ -1,0 +1,11 @@
+[ui]
+username = <%= @full_name %> <<%= @email %>>
+
+[extensions]
+color =
+
+[hostfingerprints]
+<%- @host_fingerprints.each do |host, fingerprint| %>
+<%= host %> = <%= fingerprint %>
+<%- end %>
+
