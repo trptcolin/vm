@@ -1,8 +1,6 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-
-
 # see https://github.com/dotless-de/vagrant-vbguest/issues/64
 require 'vagrant-vbguest' unless defined? VagrantVbguest::Config
 class CloudUbuntuVagrant < VagrantVbguest::Installers::Ubuntu
@@ -13,17 +11,8 @@ class CloudUbuntuVagrant < VagrantVbguest::Installers::Ubuntu
 end
 
 Vagrant.configure("2") do |config|
-  # All Vagrant configuration is done here. The most common configuration
-  # options are documented and commented below. For a complete reference,
-  # please see the online documentation at vagrantup.com.
-
-  # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = "raring32"
-
-  # The url from where the 'config.vm.box' box will be fetched if it
-  # doesn't already exist on the user's system.
-  config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/raring/current/raring-server-cloudimg-i386-vagrant-disk1.box"
-
+  config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/raring/current/raring-server-cloudimg-i386-vagrant-disk1.box"
   config.vbguest.installer = CloudUbuntuVagrant
 
   # Create a forwarded port mapping which allows access to a specific port
@@ -32,6 +21,11 @@ Vagrant.configure("2") do |config|
   # config.vm.network :forwarded_port, guest: 80, host: 8080
 
   config.ssh.forward_agent = true
+
+  #config.vm.provider :virtualbox do |vb|
+  #  # Don't boot with headless mode
+  #  vb.gui = true
+  #end
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -48,43 +42,8 @@ Vagrant.configure("2") do |config|
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "/vagrant_data"
 
-  # Provider-specific configuration so you can fine-tune various
-  # backing providers for Vagrant. These expose provider-specific options.
-  # Example for VirtualBox:
-  #
-  # config.vm.provider :virtualbox do |vb|
-  #   # Don't boot with headless mode
-  #   vb.gui = true
-  #
-  #   # Use VBoxManage to customize the VM. For example to change memory:
-  #   vb.customize ["modifyvm", :id, "--memory", "1024"]
-  # end
-  #
   # View the documentation for the provider you're using for more
   # information on available options.
-
-  # Enable provisioning with Puppet stand alone.  Puppet manifests
-  # are contained in a directory path relative to this Vagrantfile.
-  # You will need to create the manifests directory and a manifest in
-  # the file raring32.pp in the manifests_path directory.
-  #
-  # An example Puppet manifest to provision the message of the day:
-  #
-  # # group { "puppet":
-  # #   ensure => "present",
-  # # }
-  # #
-  # # File { owner => 0, group => 0, mode => 0644 }
-  # #
-  # # file { '/etc/motd':
-  # #   content => "Welcome to your Vagrant-built virtual machine!
-  # #               Managed by Puppet.\n"
-  # # }
-  #
-  # config.vm.provision :puppet do |puppet|
-  #   puppet.manifests_path = "manifests"
-  #   puppet.manifest_file  = "init.pp"
-  # end
 
   # Enable provisioning with chef solo, specifying a cookbooks path, roles
   # path, and data_bags path (all relative to this Vagrantfile), and adding
