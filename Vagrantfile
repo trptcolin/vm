@@ -62,6 +62,7 @@ Vagrant.configure("2") do |config|
   #    chef.add_recipe "zsh"
 
       chef.add_recipe "leiningen"
+      chef.add_recipe "phantomjs"
   #   chef.add_role "web"
   #
   #   # You may also specify custom JSON attributes:
