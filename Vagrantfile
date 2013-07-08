@@ -22,10 +22,11 @@ Vagrant.configure("2") do |config|
 
   config.ssh.forward_agent = true
 
-  #config.vm.provider :virtualbox do |vb|
+  config.vm.provider :virtualbox do |vb|
   #  # Don't boot with headless mode
   #  vb.gui = true
-  #end
+    vb.customize ["modifyvm", :id, "--memory", "2048"]
+  end
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
