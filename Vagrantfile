@@ -65,6 +65,7 @@ Vagrant.configure("2") do |config|
       chef.add_recipe "leiningen"
       chef.add_recipe "phantomjs"
       chef.add_recipe "mongodb"
+      chef.add_recipe "elasticsearch"
 
   #   chef.add_role "web"
   #

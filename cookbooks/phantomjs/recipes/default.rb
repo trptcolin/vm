@@ -9,6 +9,7 @@ phantom_tar = "#{home_dir}/phantomjs.tar.bz2"
 phantom_home = "#{home_dir}/.phantomjs"
 phantom_unpacked_path = "#{home_dir}/#{phantom_package}"
 
+# TODO: encapsulate this download/unpack/move dance
 remote_file phantom_tar do
   source phantom_url
   mode '0644'
@@ -22,10 +23,14 @@ directory phantom_home do
 end
 
 bash 'unpack phantomjs' do
+  user username
+  group username
   code "tar xvjf #{phantom_tar} -C #{home_dir}"
 end
 
 bash 'move phantomjs' do
+  user username
+  group username
   code "mv #{phantom_unpacked_path} #{phantom_home}"
 end
 
