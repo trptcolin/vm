@@ -18,6 +18,7 @@ Vagrant.configure("2") do |config|
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
+  config.vm.network :forwarded_port, guest: 3000, host: 3000
   config.vm.network :forwarded_port, guest: 8080, host: 8080
 
   config.ssh.forward_agent = true
@@ -58,12 +59,18 @@ Vagrant.configure("2") do |config|
       chef.add_recipe "setup"
 
       chef.add_recipe "git"
-      chef.add_recipe "vim"
+      chef.add_recipe "mercurial"
+#      chef.add_recipe "vim"
       chef.add_recipe "tmux"
       chef.add_recipe "zsh"
 
+      chef.add_recipe "rvm"
       chef.add_recipe "leiningen"
-      chef.add_recipe "phantomjs"
+      chef.add_recipe "node"
+
+#      chef.add_recipe "phantomjs"
+
+      chef.add_recipe "postgres"
       chef.add_recipe "mongodb"
       chef.add_recipe "elasticsearch"
 
