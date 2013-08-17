@@ -28,6 +28,9 @@ setopt HIST_REDUCE_BLANKS
 bindkey -e
 bindkey '^r' history-incremental-search-backward
 
+autoload -U select-word-style
+select-word-style bash
+
 # Miscellaneous Options
 setopt LOCAL_OPTIONS # allow functions to have local options
 setopt LOCAL_TRAPS # allow functions to have local traps
