@@ -5,7 +5,10 @@ username = node[:zsh][:username]
 
 zsh_files_dir = "#{home_dir}/.zsh"
 
-directory zsh_files_dir
+directory zsh_files_dir do
+  user username
+  group username
+end
 
 git "#{zsh_files_dir}/zsh-syntax-highlighting" do
   repository 'https://github.com/zsh-users/zsh-syntax-highlighting.git'
