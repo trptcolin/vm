@@ -34,10 +34,9 @@ bash 'move elasticsearch' do
   code "mv #{es_unpacked_path} #{es_home}"
 end
 
-link "/usr/local/bin/elasticsearch" do
-  to "#{es_home}/bin/elasticsearch"
-  owner user
-  group user
+cookbook_file "#{home_dir}/.zsh/elasticsearch.zsh" do
+  owner username
+  group username
 end
 
 file es_archive do
