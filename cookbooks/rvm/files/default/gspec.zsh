@@ -14,7 +14,6 @@ gspecs_run() {
     xargs --no-run-if-empty bundle exec rspec
 }
 
-
 gspec() {
   gspecs_modified | gspecs_run
 }

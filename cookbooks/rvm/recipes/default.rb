@@ -24,6 +24,11 @@ cookbook_file "#{home_dir}/.zsh/ruby.zsh" do
   group username
 end
 
+cookbook_file "#{home_dir}/.zsh/gspec.zsh" do
+  owner username
+  group username
+end
+
 cookbook_file "#{home_dir}/.gemrc" do
   owner username
   group username
