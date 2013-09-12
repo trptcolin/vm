@@ -60,7 +60,7 @@ Vagrant.configure("2") do |config|
 
       chef.add_recipe "git"
       chef.add_recipe "mercurial"
-#      chef.add_recipe "vim"
+      chef.add_recipe "vim"
       chef.add_recipe "tmux"
       chef.add_recipe "zsh"
 
@@ -68,7 +68,7 @@ Vagrant.configure("2") do |config|
       chef.add_recipe "leiningen"
       chef.add_recipe "node"
 
-#      chef.add_recipe "phantomjs"
+      chef.add_recipe "phantomjs"
 
       chef.add_recipe "postgres"
       chef.add_recipe "mongodb"
