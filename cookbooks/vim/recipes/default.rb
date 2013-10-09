@@ -13,8 +13,8 @@ git vim_dir do
   action :sync
 end
 
-bash "chown vimdir, because of CHEF-3940" do
-  code "chown #{user}:#{user} #{vim_dir}"
+bash "chown vimdir" do
+  code "chown -R #{user}:#{user} #{vim_dir}"
 end
 
 bash "update bundle" do
